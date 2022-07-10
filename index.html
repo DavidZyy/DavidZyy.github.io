@@ -198,7 +198,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-07-10 23:25:15 / Modified: 23:25:49" itemprop="dateCreated datePublished" datetime="2022-07-10T23:25:15+08:00">2022-07-10</time>
+      <time title="Created: 2022-07-10 23:25:15 / Modified: 23:40:37" itemprop="dateCreated datePublished" datetime="2022-07-10T23:25:15+08:00">2022-07-10</time>
     </span>
 
   
@@ -274,7 +274,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-07-10 23:22:01 / Modified: 23:23:11" itemprop="dateCreated datePublished" datetime="2022-07-10T23:22:01+08:00">2022-07-10</time>
+      <time title="Created: 2022-07-10 23:22:01 / Modified: 23:40:26" itemprop="dateCreated datePublished" datetime="2022-07-10T23:22:01+08:00">2022-07-10</time>
     </span>
 
   
@@ -353,7 +353,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-07-10 23:17:11 / Modified: 23:20:41" itemprop="dateCreated datePublished" datetime="2022-07-10T23:17:11+08:00">2022-07-10</time>
+      <time title="Created: 2022-07-10 23:17:11 / Modified: 23:40:13" itemprop="dateCreated datePublished" datetime="2022-07-10T23:17:11+08:00">2022-07-10</time>
     </span>
 
   
@@ -366,8 +366,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="浅谈条件数（condition-number）"><a href="#浅谈条件数（condition-number）" class="headerlink" title="浅谈条件数（condition number）"></a>浅谈条件数（condition number）</h1><p>@<a href="%E7%9B%AE%E5%BD%95">toc</a></p>
-<p>近日在看线代的书时，正好看到了奇异值（singular value）在计算条件数的应用，于是找了几份资料，似有所悟，在此现学现卖，分享与同道中人。</p>
+          <h1 id="浅谈条件数（condition-number）"><a href="#浅谈条件数（condition-number）" class="headerlink" title="浅谈条件数（condition number）"></a>浅谈条件数（condition number）</h1><p>近日在看线代的书时，正好看到了奇异值（singular value）在计算条件数的应用，于是找了几份资料，似有所悟，在此现学现卖，分享与同道中人。</p>
 <p>需要指出的是，条件数是个宽泛的概念，这里讨论的，用[1]的话说是“the condition number for inversion”。</p>
 <h2 id="向量的范数（the-norm-of-a-vector）"><a href="#向量的范数（the-norm-of-a-vector）" class="headerlink" title="向量的范数（the norm of a vector）"></a>向量的范数（the norm of a vector）</h2><p>一个向量的norm是衡量向量大小的概念，有多种定义，材料[1]和[2]就采用了不同的范数，不过采用哪种范数，对于条件数没有影响。向量$x$的范数符号表示为$||x||$。例如[1]采用了<em>Euclidean norm</em> or 2- <em>norm</em>：<br>$$<br>||x||&#x3D;(\sum_ix_i^2)^{1&#x2F;2}<br>$$<br>而[2]的定义为：<br>$$<br>||x||&#x3D;\text{max}{|x_1|,|x_2|,\cdots,|x_3|}<br>$$</p>
 <h2 id="矩阵的范数（the-norm-of-a-matrix）"><a href="#矩阵的范数（the-norm-of-a-matrix）" class="headerlink" title="矩阵的范数（the norm of a matrix）"></a>矩阵的范数（the norm of a matrix）</h2><p>一个矩阵的norm定义为其最大能拉伸（stretch)向量的能力：<br>$$<br>M &#x3D; ||A|| &#x3D; \text{max}\frac{||Ax||}{||x||}<br>$$<br>与此同时定义其最小拉伸向量的能力；<br>$$<br>m &#x3D; \text{min}\frac{||Ax||}{||x||}<br>$$<br>可证：<br>$$<br>m &#x3D; \frac{1}{||A^{-1}||}<br>$$<br>而条件数被定义为这两者的比值，即：<br>$$<br>\kappa(A) &#x3D; \frac{M}{m} &#x3D; ||A||||A^{-1}||<br>$$</p>
@@ -436,7 +435,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-07-10 23:11:42 / Modified: 23:16:44" itemprop="dateCreated datePublished" datetime="2022-07-10T23:11:42+08:00">2022-07-10</time>
+      <time title="Created: 2022-07-10 23:11:42 / Modified: 23:40:50" itemprop="dateCreated datePublished" datetime="2022-07-10T23:11:42+08:00">2022-07-10</time>
     </span>
 
   
@@ -953,6 +952,12 @@
   
 
 
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 
