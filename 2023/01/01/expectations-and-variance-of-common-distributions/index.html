@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言 本文计算了一些常见分布的期望和方差，有些计算需要用到级数求和的知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="expectations-and-variance-of-common-distributions">
+<meta property="og:url" content="http://example.com/2023/01/01/expectations-and-variance-of-common-distributions/index.html">
+<meta property="og:site_name" content="Yangyang Zhu&#39;s Blog">
+<meta property="og:description" content="前言 本文计算了一些常见分布的期望和方差，有些计算需要用到级数求和的知识。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-01T10:02:46.000Z">
+<meta property="article:modified_time" content="2023-01-01T10:04:09.795Z">
+<meta property="article:author" content="Yangyang Zhu">
+<meta property="article:tag" content="math">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/01/01/expectations-and-variance-of-common-distributions/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/01/01/expectations-and-variance-of-common-distributions/","path":"2023/01/01/expectations-and-variance-of-common-distributions/","title":"expectations-and-variance-of-common-distributions"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>expectations-and-variance-of-common-distributions | Yangyang Zhu's Blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yangyang Zhu's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">路漫漫其修远兮，吾将上下而求索</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A6%BB%E6%95%A3%E5%88%86%E5%B8%83"><span class="nav-number">2.</span> <span class="nav-text">离散分布</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B8%83"><span class="nav-number">2.1.</span> <span class="nav-text">0-1分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83"><span class="nav-number">2.2.</span> <span class="nav-text">二项分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83"><span class="nav-number">2.3.</span> <span class="nav-text">泊松分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="nav-number">2.4.</span> <span class="nav-text">几何分布</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E5%88%86%E5%B8%83"><span class="nav-number">3.</span> <span class="nav-text">连续分布</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83"><span class="nav-number">3.1.</span> <span class="nav-text">均匀分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E6%95%B0%E5%88%86%E5%B8%83"><span class="nav-number">3.2.</span> <span class="nav-text">指数分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-number">3.3.</span> <span class="nav-text">正态分布</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E5%88%86%E5%B8%83"><span class="nav-number">4.</span> <span class="nav-text">三大分布</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.1.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yangyang Zhu"
+      src="/images/profile.jpg">
+  <p class="site-author-name" itemprop="name">Yangyang Zhu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/01/expectations-and-variance-of-common-distributions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.jpg">
+      <meta itemprop="name" content="Yangyang Zhu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yangyang Zhu's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="expectations-and-variance-of-common-distributions | Yangyang Zhu's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          expectations-and-variance-of-common-distributions
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-01-01 18:02:46 / Modified: 18:04:09" itemprop="dateCreated datePublished" datetime="2023-01-01T18:02:46+08:00">2023-01-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言">前言</h1>
+<p>本文计算了一些常见分布的期望和方差，有些计算需要用到<strong>级数求和</strong>的知识。</p>
+<span id="more"></span>
+<h1 id="离散分布">离散分布</h1>
+<h2 id="分布">0-1分布</h2>
+<p><span class="math inline">\(X\)</span>服从0-1分布，其分布律为： <span class="math display">\[
+P\{X = 0\} = 1-p, \quad P\{ X = 1\} = p
+\]</span> <strong>期望：</strong> <span class="math display">\[
+E(X) = 1 \cdot p + 0 \cdot (1-p) = p
+\]</span> <strong>方差：</strong> <span class="math display">\[
+\begin{split}
+D(X) &amp;= E[(X - E(X))^2] \\
+&amp;= E[(X - p)^2] \\
+&amp;= (1 - p) \cdot (0-p)^2 + p \cdot (1-p)^2 \\
+&amp;= (1 - p) \cdot p^2 + p \cdot (1-p)^2 \\
+&amp;= (1-p) \cdot p \cdot (p + 1 - p) \\
+&amp;= p(1-p)
+\end{split}
+\]</span> 或者 <span class="math display">\[
+\begin{split}
+D(X) &amp;= E[(X - E(X))^2] \\
+&amp;= E(X^2) - E^2(X) \\
+&amp;= p - p^2 \\
+&amp;= p(1-p)
+\end{split}
+\]</span></p>
+<h2 id="二项分布">二项分布</h2>
+<p>假设随机变量 <span class="math inline">\(X \sim B(n, p)\)</span>，求期望和方差。</p>
+<p><span class="math inline">\(P\{X = k\} = C_n^k p^k(1-p)^{n-k}\)</span>。</p>
+<p>可以直接计算： <span class="math display">\[
+\begin{split}
+E(X) &amp;= \sum_{k=0}^n kP\{X = k\} \\
+\end{split}
+\]</span> 使用到了二项式定理。</p>
+<p>也可以根据每次实验的结果都符合0-1分布，且各次实验相互独立来推导。</p>
+<p>设 <span class="math inline">\(X = X_1 + X_2 + \cdots + X_n\)</span>。</p>
+<p><strong>期望：</strong> <span class="math display">\[
+E(X) = E(\sum_{k=1}^nX_k) = \sum_{k=1}^nE(X_k) = np
+\]</span> <strong>方差：</strong> <span class="math display">\[
+D(X) = D(\sum_{k=1}^nX_k) = \sum_{k=1}^nD(X_k) = np(1-p)
+\]</span></p>
+<h2 id="泊松分布">泊松分布</h2>
+<p><span class="math inline">\(X \sim P(\lambda)\)</span></p>
+<p><span class="math inline">\(P\{X = k\} = \frac{\lambda^k}{k!} e^{-\lambda}\)</span></p>
+<p>其中 <span class="math inline">\(\frac{\lambda^k}{k!}\)</span> 是 <span class="math inline">\(e^{\lambda}\)</span> 的在 <span class="math inline">\(\lambda = 0\)</span> 的泰勒展开式。</p>
+<p><strong>期望：</strong> <span class="math display">\[
+\begin{split}
+E(X) &amp;= \sum_{k=0}^{\infty} kP\{X = k\} 
+= \sum_{k=0}^{\infty} k \frac{\lambda^k}{k!} e^{-\lambda} 
+= \sum_{k=1}^{\infty} k \frac{\lambda^k}{k!} e^{-\lambda} \\
+&amp;= e^{-\lambda} \sum_{k=1}^{\infty} k \frac{\lambda^k}{k!}  
+= e^{-\lambda} \sum_{k=1}^{\infty} \frac{\lambda^k}{(k-1)!}  
+= \lambda e^{-\lambda} \sum_{k=1}^{\infty} \frac{\lambda^{(k-1)}}{(k-1)!}  \\
+&amp;= \lambda e^{-\lambda} \sum_{k=0}^{\infty} \frac{\lambda^{k}}{k!}  
+= \lambda e^{-\lambda} e^{\lambda} 
+= \lambda
+\end{split}
+\]</span> <strong>方差：</strong></p>
+<p>使用公式 <span class="math inline">\(D(X) = E(X^2) - E^2(X)\)</span>来求。</p>
+<p>这个分解 <span class="math inline">\(E(X^2)\)</span> 的求法来自[2]p102页例3。 <span class="math display">\[
+\begin{split}
+E(X^2) &amp;= E[X(X-1) + X] = E[X(X-1)] + E(X)\\
+\end{split}
+\]</span></p>
+<p><span class="math display">\[
+\begin{split}
+E[X(X-1)] &amp;= \sum_{k=0}^{\infty} k(k-1)P\{X = k\} 
+= \sum_{k=0}^{\infty} k(k-1) \frac{\lambda^k}{k!} e^{-\lambda} 
+= \sum_{k=2}^{\infty} k(k-1) \frac{\lambda^k}{k!} e^{-\lambda} \\
+&amp;= e^{-\lambda} \sum_{k=2}^{\infty} k(k-1) \frac{\lambda^k}{k!}  
+= e^{-\lambda} \sum_{k=2}^{\infty} \frac{\lambda^k}{(k-2)!}  
+= \lambda^2 e^{-\lambda} \sum_{k=2}^{\infty} \frac{\lambda^{(k-2)}}{(k-2)!}  \\
+&amp;= \lambda^2 e^{-\lambda} \sum_{k=0}^{\infty} \frac{\lambda^{k}}{k!}  
+= \lambda^2 e^{-\lambda} e^{\lambda} 
+= \lambda^2
+\end{split}
+\]</span></p>
+<p>所以<span class="math inline">\(E(X^2) = \lambda^2 + \lambda\)</span>。</p>
+<p><span class="math inline">\(D(X) = \lambda\)</span>。</p>
+<h2 id="几何分布">几何分布</h2>
+<p>参考[3]。</p>
+<p><span class="math inline">\(X\)</span>服从几何分布，即 <span class="math inline">\(P(X = k) = p(1-p)^{k-1}\)</span>，求期望和方差。 假设成功的概率为<span class="math inline">\(p\)</span>，可以令失败的概率为 <span class="math inline">\(q = 1-p\)</span>。</p>
+<p><strong>期望：</strong> <span class="math display">\[
+\begin{split}
+E(X) 
+&amp;= \sum_{k=1}^{+\infty}kP(X = k) = \sum_{k=1}^{+\infty}kpq^{k-1} \\
+&amp;= p\sum_{k=1}^{+\infty}kq^{k-1} = p\frac{1}{(1 - q)^2} = \frac{1}{p}
+\end{split}
+\]</span> 使用了幂级数求和，实际上是高中的等比数列求和，见[1] p253。 <span class="math display">\[
+\sum_{k = 0}^{\infty}x^k = 1 + x + x^2 + \cdots + x^k + \cdots = \frac{1}{1-x}, |x| &lt; 1
+\]</span> 则有： <span class="math display">\[
+\sum_{k=1}^{\infty}kx^{k-1} = (\sum_{k=1}^{\infty}x^k)^{\prime} = (\frac{x}{1-x})^{\prime} = \frac{1}{(1-x)^2}
+\]</span> <strong>方差：</strong> <span class="math display">\[
+\begin{split}
+E(X^2) &amp;= \sum_{k=1}^{\infty}k^2 \cdot P(X = k) = \sum_{k=1}^{\infty}k^2 p q^{k-1} \\
+&amp;= p\sum_{k=1}^{\infty}k^2 q^{k-1}  = p \cdot \frac{1 + q}{(1 - q)^3} = \frac{1 + q}{(1 - q)^2}
+\end{split}
+\]</span> 利用了级数： <span class="math display">\[
+\sum_{k=1}^{\infty}k^2x^{k-1} = (\sum_{k=1}^{\infty}kx^k)^{\prime}= (x\sum_{k=1}^{\infty}kx^{k-1})^{\prime} = [\frac{x}{(1-x)^2}]^{\prime} = \frac{1+x}{(1-x)^3}, |x| &lt; 1
+\]</span> 有： <span class="math display">\[
+D(x) = E(X^2) - E^2(X) =  \frac{1+q}{(1-q)^2} - \frac{1}{p^2} = \frac{2-p}{p^2} -\frac{1}{p^2} = \frac{1-p}{p^2}
+\]</span></p>
+<h1 id="连续分布">连续分布</h1>
+<h2 id="均匀分布">均匀分布</h2>
+<p><span class="math inline">\(X \sim U(a, b)\)</span>。</p>
+<p><span class="math inline">\(X\)</span>的概率密度函数： <span class="math display">\[
+f(x) = 
+\begin{cases}
+\frac{1}{b-a},  &amp; a &lt; x &lt; b\\
+0, &amp; else
+\end{cases}
+\]</span></p>
+<p><strong>期望：</strong> <span class="math display">\[
+E(X) = \int_{-\infty}^{\infty}xf(x)\rm{d}x = \int_{a}^{b}\frac{x}{b-a}\rm{d}x = \frac{1}{b-a} \cdot \frac{1}{2} \cdot (b^2 - a^2) = \frac{a+b}{2}
+\]</span> <strong>方差：</strong> <span class="math display">\[
+\begin{split}
+E(X^2) &amp;= \int_{-\infty}^{\infty}x^2f(x)\rm{d}x = \int_{a}^{b}\frac{x^2}{b-a}\rm{d}x \\
+&amp;= \frac{1}{b-a} \cdot \frac{1}{3} \cdot (b^3 -a^3) \\
+&amp;= \frac{1}{b-a} \cdot \frac{1}{3} \cdot (b - a)(b^2 + ba + a^2) \\
+&amp;= \frac{b^2 + ba + a^2}{3}
+\end{split}
+\]</span></p>
+<p><span class="math display">\[
+\begin{split}
+D(X) &amp;= E(X^2) - E^2(X) \\
+&amp;= \frac{b^2 + ba + a^2}{3} - \frac{(a+b)^2}{2^2} \\
+&amp;= \frac{4b^2 + 4ba + 4a^2}{12} - \frac{3(a+b)^2}{12} \\
+&amp;= \frac{b^2 - 2ba + a^2}{12} \\
+&amp;= \frac{(b - a)^2}{12} \\
+\end{split}
+\]</span></p>
+<h2 id="指数分布">指数分布</h2>
+<p><span class="math inline">\(X\)</span>服从指数分布，概率密度函数为： <span class="math display">\[
+f(x) = 
+\begin{cases}
+\frac{1}{\theta}e^{-\frac{x}{\theta}},  &amp; x &gt; 0,\\
+0, &amp; x \leq 0,
+\end{cases}
+\]</span> 其中 <span class="math inline">\(\theta &gt; 0\)</span>。</p>
+<p>也有的写为： <span class="math display">\[
+f(x) = 
+\begin{cases}
+{\theta}e^{-{\theta}x},  &amp; x &gt; 0,\\
+0, &amp; x \leq 0,
+\end{cases}
+\]</span> 写为第一种形式是为了更好的表示期望和方差。</p>
+<p><strong>期望：</strong> <span class="math display">\[
+\begin{split}
+E(X) &amp;= \int_{-\infty}^{\infty}xf(x)\mathrm{d}x \\
+&amp;= \int_{0}^{\infty}x\frac{1}{\theta}e^{-\frac{x}{\theta}} \mathrm{d}x \\
+&amp;= \theta\int_{0}^{\infty}\frac{x}{\theta}e^{-\frac{x}{\theta}} \mathrm{d}\frac{x}{\theta} \\
+&amp;= \theta\Gamma(2) \\
+&amp;= \theta
+\end{split}
+\]</span></p>
+<p>也可以使用分布积分来计算： <span class="math display">\[
+\begin{split}
+E(X) &amp;= \int_{-\infty}^{\infty}xf(x)\mathrm{d}x \\
+&amp;= \int_{0}^{\infty}x\frac{1}{\theta}e^{-\frac{x}{\theta}} \mathrm{d}x \\
+&amp;=- \int_{0}^{\infty} x \mathrm{d}e^{-\frac{x}{\theta}} \\
+&amp;= -xe^{-\frac{x}{\theta}}\big|_{0}^{\infty} + \int_{0}^{\infty}e^{-\frac{x}{\theta}} \mathrm{d}x \\
+&amp;= -\theta e^{-\frac{x}{\theta}} \big|_{0}^{\infty} \\
+&amp;= \theta \\
+\end{split}
+\]</span> <strong>方差：</strong> <span class="math display">\[
+\begin{split}
+E(X^2) &amp;= \int_{-\infty}^{\infty}x^2f(x)\mathrm{d}x = \int_{0}^{\infty} x^2 \frac{1}{\theta}e^{-\frac{x}{\theta}} \mathrm{d}x \\
+&amp;= \theta^2\int_{0}^{\infty} (\frac{x}{\theta})^2 e^{-\frac{x}{\theta}} \mathrm{d}\frac{x}{\theta} \\
+&amp;= \theta^2 \Gamma(3) \\
+&amp;= 2 \theta^2
+\end{split}
+\]</span> 则<span class="math inline">\(D(X) = E(X^2) - E^2(X) = \theta^2\)</span>。</p>
+<h2 id="正态分布">正态分布</h2>
+<p>期望为 <span class="math inline">\(\mu\)</span>，方差为 <span class="math inline">\(\sigma^2\)</span>。</p>
+<h1 id="三大分布">三大分布</h1>
+<p>略</p>
+<h2 id="参考资料">参考资料</h2>
+<p>[1] 6版同济高数下</p>
+<p>[2] <em>概率论与数理统计</em> 浙大盛骤四版</p>
+<p>[3] <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/361906963">几何分布的期望和方差怎么推导?</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/math/" rel="tag"># math</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/01/01/three-distributions/" rel="prev" title="three-distributions">
+                  <i class="fa fa-chevron-left"></i> three-distributions
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yangyang Zhu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
