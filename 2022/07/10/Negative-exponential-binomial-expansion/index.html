@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="负指数二项式展开 前言 今日在学习陈希孺先生的《概率论与数理统计》一书时，看到了一个之前未闻的负二项分布，于是上溯到负指数的二项式展开，这方面从前未知，照例学习一番，写篇博客，即入即出。">
+    <meta name="description" content="负指数二项式展开 前言 今日在学习陈希孺先生的《概率论与数理统计》一书时，看到了一个之前未闻的负二项分布，于是上溯到负指数的二项式展开，这方面从前未知，照例学习一番，写篇博客，即入即出。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Negative exponential binomial expansion">
 <meta property="og:url" content="http://example.com/2022/07/10/Negative-exponential-binomial-expansion/index.html">
 <meta property="og:site_name" content="Yangyang Zhu&#39;s Blog">
-<meta property="og:description" content="负指数二项式展开 前言 今日在学习陈希孺先生的《概率论与数理统计》一书时，看到了一个之前未闻的负二项分布，于是上溯到负指数的二项式展开，这方面从前未知，照例学习一番，写篇博客，即入即出。">
+<meta property="og:description" content="负指数二项式展开 前言 今日在学习陈希孺先生的《概率论与数理统计》一书时，看到了一个之前未闻的负二项分布，于是上溯到负指数的二项式展开，这方面从前未知，照例学习一番，写篇博客，即入即出。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-10T15:25:15.000Z">
 <meta property="article:modified_time" content="2022-07-10T16:48:02.075Z">
@@ -131,7 +131,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -229,12 +229,25 @@
 <p>今日在学习陈希孺先生的《概率论与数理统计》一书时，看到了一个之前未闻的<strong>负二项分布</strong>，于是上溯到负指数的二项式展开，这方面从前未知，照例学习一番，写篇博客，即入即出。</p>
 <span id="more"></span>
 <h2 id="含负数的组合数">含负数的组合数</h2>
-<p>我们通常的二项式展开的指数是非负整数，例如： <span class="math display">\[
+<p>我们通常的二项式展开的指数是非负整数，例如： <span
+class="math display">\[
 (a+b)^n=\sum_{r=0}^{n}C_n^ra^{n-r}b^r
-\]</span> 其中<span class="math inline">\(C_n^r=\frac{n!}{r!(n-r)!}\)</span>，又记做<span class="math inline">\(\tbinom{n}{r}\)</span>。我们高中学到的二项式展开，<span class="math inline">\(n\)</span>和<span class="math inline">\(r\)</span>通常是非负整数，如果我们要展开像是<span class="math inline">\((a+b)^{-3}\)</span>这样指数是负数的二项式，就要把上面的<span class="math inline">\(n\)</span>拓展到负数，而<span class="math inline">\(r\)</span>仍是非负整数。</p>
-<p><span class="math inline">\(n\)</span>拓展到负数以后，<span class="math inline">\(\tbinom{n}{r}\)</span>的计算方法还是一样的，即： <span class="math display">\[
+\]</span> 其中<span
+class="math inline">\(C_n^r=\frac{n!}{r!(n-r)!}\)</span>，又记做<span
+class="math inline">\(\tbinom{n}{r}\)</span>。我们高中学到的二项式展开，<span
+class="math inline">\(n\)</span>和<span
+class="math inline">\(r\)</span>通常是非负整数，如果我们要展开像是<span
+class="math inline">\((a+b)^{-3}\)</span>这样指数是负数的二项式，就要把上面的<span
+class="math inline">\(n\)</span>拓展到负数，而<span
+class="math inline">\(r\)</span>仍是非负整数。</p>
+<p><span class="math inline">\(n\)</span>拓展到负数以后，<span
+class="math inline">\(\tbinom{n}{r}\)</span>的计算方法还是一样的，即：
+<span class="math display">\[
 \tbinom{n}{r}=\frac{n(n-1)\cdots(n-r+1)}{r!}=\frac{n!}{r!(n-r)!}
-\]</span> 假设<span class="math inline">\(n\)</span>,<span class="math inline">\(k\)</span>为正数，我们根据这个定义计算一下<span class="math inline">\(\tbinom{-n}{k}\)</span>: <span class="math display">\[
+\]</span> 假设<span class="math inline">\(n\)</span>,<span
+class="math inline">\(k\)</span>为正数，我们根据这个定义计算一下<span
+class="math inline">\(\tbinom{-n}{k}\)</span>: <span
+class="math display">\[
 \begin{aligned}
 \tbinom{-n}{k}
 =&amp;\frac{(-n)(-n-1)\cdots(-n-(k-1))}{k!}\\
@@ -244,16 +257,22 @@
 \end{aligned}
 \]</span></p>
 <h2 id="负指数二项式的麦克劳林展开">负指数二项式的麦克劳林展开</h2>
-<p><span class="math inline">\(f(x)\)</span>的麦克劳林级数（Maclaurin series ）定义为： <span class="math display">\[
+<p><span class="math inline">\(f(x)\)</span>的麦克劳林级数（Maclaurin
+series ）定义为： <span class="math display">\[
 f(x)=f(0)+f^{&#39;}(0)x+\frac{f^{&quot;}(0)}{2!}x^2+\cdots+\frac{f^{(k)}(0)}{k!}x^k+\cdots
-\]</span> 假设<span class="math inline">\(n\)</span>为正数，以<span class="math inline">\(\frac{1}{(1+x)^n}\)</span>为例，求其二项式展开。</p>
-<p>首先根据Maclaurin级数展开<span class="math inline">\(\frac{1}{(1+x)^n}\)</span>： <span class="math display">\[
+\]</span> 假设<span class="math inline">\(n\)</span>为正数，以<span
+class="math inline">\(\frac{1}{(1+x)^n}\)</span>为例，求其二项式展开。</p>
+<p>首先根据Maclaurin级数展开<span
+class="math inline">\(\frac{1}{(1+x)^n}\)</span>： <span
+class="math display">\[
 \begin{aligned}
 f(x) = (1+x)^{-n}\Rightarrow&amp;f(0)=1\\
 f^{&#39;}(x) = (-n)(1+x)^{(-n-1)}\Rightarrow&amp;f^{&#39;}(0)=-n\\
-f^{&quot;}(x) = (-n)(-n-1)(1+x)^{(-n-2)}\Rightarrow&amp;f^{&quot;}(0)=(-n)(-n-1)\\
+f^{&quot;}(x) =
+(-n)(-n-1)(1+x)^{(-n-2)}\Rightarrow&amp;f^{&quot;}(0)=(-n)(-n-1)\\
 &amp;\vdots\\
-f^{(k)}(x) = (-n)(-n-1)\cdots(-n-(k-1))(1+x)^{-n-k}\Rightarrow&amp;f^{(k)}(0)=(-n)(-n-1)\cdots(-n-(k-1))\\
+f^{(k)}(x) =
+(-n)(-n-1)\cdots(-n-(k-1))(1+x)^{-n-k}\Rightarrow&amp;f^{(k)}(0)=(-n)(-n-1)\cdots(-n-(k-1))\\
 &amp;\vdots
 \end{aligned}
 \]</span> 代入得： <span class="math display">\[
@@ -264,7 +283,9 @@ f(x)&amp;=1+(-n)x+\frac{(-n)(-n-1)}{2!}x^2+\cdots+\frac{(-n)(-n-1)\cdots(-n-(k-1
 \end{aligned}
 \]</span></p>
 <h2 id="参考资料">参考资料</h2>
-<p>[1] <a target="_blank" rel="noopener" href="https://brilliant.org/wiki/negative-binomial-theorem/">Negative Binomial Theorem</a></p>
+<p>[1] <a
+target="_blank" rel="noopener" href="https://brilliant.org/wiki/negative-binomial-theorem/">Negative
+Binomial Theorem</a></p>
 
     </div>
 

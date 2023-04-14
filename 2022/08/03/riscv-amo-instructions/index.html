@@ -19,22 +19,18 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="riscv amo（Atomic Memory Operation）指令 本文地址 指令介绍  image-20220802163048735  amo指令主要用作多处理器同步，用来实现自旋锁，位操作。  These AMO instructions atomically load a data value from the address in rs1, place the va">
+    <meta name="description" content="riscv amo（Atomic Memory Operation）指令 本文地址 指令介绍   image-20220802163048735  amo指令主要用作多处理器同步，用来实现自旋锁，位操作。  These AMO instructions atomically load a data value from the address in rs1, place the value int">
 <meta property="og:type" content="article">
 <meta property="og:title" content="riscv amo instructions">
 <meta property="og:url" content="http://example.com/2022/08/03/riscv-amo-instructions/index.html">
 <meta property="og:site_name" content="Yangyang Zhu&#39;s Blog">
-<meta property="og:description" content="riscv amo（Atomic Memory Operation）指令 本文地址 指令介绍  image-20220802163048735  amo指令主要用作多处理器同步，用来实现自旋锁，位操作。  These AMO instructions atomically load a data value from the address in rs1, place the va">
+<meta property="og:description" content="riscv amo（Atomic Memory Operation）指令 本文地址 指令介绍   image-20220802163048735  amo指令主要用作多处理器同步，用来实现自旋锁，位操作。  These AMO instructions atomically load a data value from the address in rs1, place the value int">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220802163048735.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220802165059732.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220802171746321.png">
 <meta property="article:published_time" content="2022-08-03T05:30:05.000Z">
 <meta property="article:modified_time" content="2022-08-03T05:39:12.811Z">
 <meta property="article:author" content="Yangyang Zhu">
 <meta property="article:tag" content="riscv">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220802163048735.png">
 
 
 <link rel="canonical" href="http://example.com/2022/08/03/riscv-amo-instructions/">
@@ -135,7 +131,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -223,14 +219,21 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>riscv amo（Atomic Memory Operation）指令</p>
-<p><a target="_blank" rel="noopener" href="https://davidzyy.github.io/2022/08/03/riscv-amo-instructions/">本文地址</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://davidzyy.github.io/2022/08/03/riscv-amo-instructions/">本文地址</a></p>
 <h1 id="指令介绍">指令介绍</h1>
 <figure>
-<img src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220802163048735.png" alt="image-20220802163048735" /><figcaption>image-20220802163048735</figcaption>
+<img
+src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220802163048735.png"
+alt="image-20220802163048735" />
+<figcaption aria-hidden="true">image-20220802163048735</figcaption>
 </figure>
 <p>amo指令主要用作多处理器同步，用来实现自旋锁，位操作。</p>
 <blockquote>
-<p>These AMO instructions atomically load a data value from the address in rs1, place the value into register rd, apply a binary operator to the loaded value and the original value in rs2, then store the result back to the address in rs1.</p>
+<p>These AMO instructions atomically load a data value from the address
+in rs1, place the value into register rd, apply a binary operator to the
+loaded value and the original value in rs2, then store the result back
+to the address in rs1.</p>
 </blockquote>
 <p>amo指令从rs1所指向的地址addr中加载一个数据，把数据放到rd中，并把加载的数据和rs2中的数据进行运算，把结果放到rs1指向的addr中。</p>
 <span id="more"></span>
@@ -239,7 +242,10 @@
 <p>发现再两个不同版本的手册中，有略微的差别。</p>
 <p>较新的版本[2]如下：</p>
 <figure>
-<img src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220802165059732.png" alt="image-20220802165059732" /><figcaption>image-20220802165059732</figcaption>
+<img
+src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220802165059732.png"
+alt="image-20220802165059732" />
+<figcaption aria-hidden="true">image-20220802165059732</figcaption>
 </figure>
 <ol type="1">
 <li>先在寄存器<code>t0</code>中放入<code>1</code>（<code>li t0, 1</code>)。</li>
@@ -248,11 +254,15 @@
 <li>把<code>t0</code>（1）放到<code>a0</code>表示的地址中，含义为上锁，把原<code>(a0)</code>放到<code>t1</code>中。</li>
 <li>同3，检查是否已经上锁了，如果上锁了，跳到again。</li>
 <li>执行关键区代码。</li>
-<li>解锁，把<code>x0</code>(0)，的值交给<code>(a0)</code>，把<code>(a0)</code>的值交给 <code>x0</code>（遗弃）。</li>
+<li>解锁，把<code>x0</code>(0)，的值交给<code>(a0)</code>，把<code>(a0)</code>的值交给
+<code>x0</code>（遗弃）。</li>
 </ol>
 <p>较旧版本[3]如下：</p>
 <figure>
-<img src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220802171746321.png" alt="image-20220802171746321" /><figcaption>image-20220802171746321</figcaption>
+<img
+src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220802171746321.png"
+alt="image-20220802171746321" />
+<figcaption aria-hidden="true">image-20220802171746321</figcaption>
 </figure>
 <p>更加简洁一些，不知道为什么改掉了。</p>
 <h1 id="linux相关实现">linux相关实现</h1>
@@ -272,14 +282,25 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__test_and_op_bit_ord(and, __NOT, nr, addr, .aqrl)</span><br></pre></td></tr></table></figure>
 <p>继续展开为：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">long</span> __res, __mask; </span><br><span class="line">__mask = BIT_MASK(nr); </span><br><span class="line">__asm__ __volatile__ ( </span><br><span class="line">    amoand.d.aqrl %<span class="number">0</span>, %<span class="number">2</span>, %<span class="number">1</span></span><br><span class="line">    : <span class="string">&quot;=r&quot;</span> (__res), <span class="string">&quot;+A&quot;</span> (addr[BIT_WORD(nr)]) </span><br><span class="line">    : <span class="string">&quot;r&quot;</span> (~__mask) </span><br><span class="line">    : <span class="string">&quot;memory&quot;</span>); </span><br><span class="line">((__res &amp; __mask) != <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-<p>把<code>addr[BIT_WORD(nr)]</code>旧的值保存在<code>__res</code>中，然后clear bit(与 <code>~mask</code>)，然后返回旧的值与 <code>__mask</code>。</p>
+<p>把<code>addr[BIT_WORD(nr)]</code>旧的值保存在<code>__res</code>中，然后clear
+bit(与 <code>~mask</code>)，然后返回旧的值与 <code>__mask</code>。</p>
 <h2 id="bit-spinlock的实现简版">bit spinlock的实现（简版）</h2>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  bit-based spin_lock()</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Don&#x27;t use this unless you really need to: spin_lock() and spin_unlock()</span></span><br><span class="line"><span class="comment"> * are significantly faster.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">static</span> <span class="keyword">inline</span> <span class="type">int</span> <span class="title function_">bit_spin_lock</span><span class="params">(<span class="type">int</span> bitnum, <span class="type">unsigned</span> <span class="type">long</span> *addr)</span>&#123;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * Assuming the lock is uncontended, this never enters</span></span><br><span class="line"><span class="comment">	 * the body of the outer loop. If it is contended, then</span></span><br><span class="line"><span class="comment">	 * within the inner loop a non-atomic test is used to</span></span><br><span class="line"><span class="comment">	 * busywait with less bus contention for a good time to</span></span><br><span class="line"><span class="comment">	 * attempt to acquire the lock bit.</span></span><br><span class="line"><span class="comment">   * 如果锁没被获得，则不会进入到循环内部；</span></span><br><span class="line"><span class="comment">   * 如果锁已经被获得了，进入循环内，一直test这个位，直到它被释放。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">  <span class="keyword">while</span>(unlikely(test_and_set_bit_lock(bitnum, addr)))&#123;</span><br><span class="line">    <span class="keyword">while</span>(test_bit(bitnum, addr))</span><br><span class="line">      ;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="keyword">inline</span> <span class="type">void</span> <span class="title function_">bit_spin_unlock</span><span class="params">(<span class="type">int</span> bitnum, <span class="type">unsigned</span> <span class="type">long</span> *addr)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!test_bit(bitnum, addr))</span><br><span class="line">    ER();</span><br><span class="line">  clear_bit_unlock(bitnum, addr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="参考资料">参考资料</h1>
-<p>[1] <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=dAVZTHxC16w">Multithreaded Application Synchronization pt. II (Mutual Exclusion Locks a'la RISC-V)</a></p>
-<p>[2] The RISC-V Instruction Set Manual Volume I: Unprivileged ISA Document Version 20191213</p>
-<p>[3] The RISC-V Instruction Set Manual Volume I: User-Level ISA Document Version 2.2</p>
-<p>[4] <a target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/latest/source">/</a><a target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/latest/source/arch">arch</a>/<a target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/latest/source/arch/riscv">riscv</a>/<a target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/latest/source/arch/riscv/include">include</a>/<a target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/latest/source/arch/riscv/include/asm">asm</a>/<a target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/latest/source/arch/riscv/include/asm/bitops.h">bitops.h</a></p>
+<p>[1] <a
+target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=dAVZTHxC16w">Multithreaded
+Application Synchronization pt. II (Mutual Exclusion Locks a'la
+RISC-V)</a></p>
+<p>[2] The RISC-V Instruction Set Manual Volume I: Unprivileged ISA
+Document Version 20191213</p>
+<p>[3] The RISC-V Instruction Set Manual Volume I: User-Level ISA
+Document Version 2.2</p>
+<p>[4] <a target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/latest/source">/</a><a
+target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/latest/source/arch">arch</a>/<a
+target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/latest/source/arch/riscv">riscv</a>/<a
+target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/latest/source/arch/riscv/include">include</a>/<a
+target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/latest/source/arch/riscv/include/asm">asm</a>/<a
+target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/latest/source/arch/riscv/include/asm/bitops.h">bitops.h</a></p>
 
     </div>
 
@@ -353,7 +374,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

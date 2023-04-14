@@ -19,23 +19,18 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="本文地址 2022年全国大学生计算机系统能力大赛，操作系统设计赛结束了，我们队的作品tatakos，非常幸运的获得了内核赛道的一等奖。 得知这个消息的一刻，并没有想象中的激动，感觉也是在情理之中，水到渠成。 这大半年学习os和参加比赛的经历还是很宝贵的，值得记录一下。">
+    <meta name="description" content="本文地址 2022年全国大学生计算机系统能力大赛，操作系统设计赛结束了，我们队的作品tatakos，非常幸运的获得了内核赛道的一等奖。 得知这个消息的一刻，并没有想象中的激动，感觉也是在情理之中，水到渠成。 这大半年学习os和参加比赛的经历还是很宝贵的，值得记录一下。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="my experience of learning os">
 <meta property="og:url" content="http://example.com/2022/08/27/my-experience-of-learning-os/index.html">
 <meta property="og:site_name" content="Yangyang Zhu&#39;s Blog">
-<meta property="og:description" content="本文地址 2022年全国大学生计算机系统能力大赛，操作系统设计赛结束了，我们队的作品tatakos，非常幸运的获得了内核赛道的一等奖。 得知这个消息的一刻，并没有想象中的激动，感觉也是在情理之中，水到渠成。 这大半年学习os和参加比赛的经历还是很宝贵的，值得记录一下。">
+<meta property="og:description" content="本文地址 2022年全国大学生计算机系统能力大赛，操作系统设计赛结束了，我们队的作品tatakos，非常幸运的获得了内核赛道的一等奖。 得知这个消息的一刻，并没有想象中的激动，感觉也是在情理之中，水到渠成。 这大半年学习os和参加比赛的经历还是很宝贵的，值得记录一下。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220827203515524.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220827203232833.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220827202816372.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220827203005578.png">
 <meta property="article:published_time" content="2022-08-27T12:47:11.000Z">
 <meta property="article:modified_time" content="2022-08-27T13:04:42.642Z">
 <meta property="article:author" content="Yangyang Zhu">
 <meta property="article:tag" content="os">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220827203515524.png">
 
 
 <link rel="canonical" href="http://example.com/2022/08/27/my-experience-of-learning-os/">
@@ -136,7 +131,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -223,7 +218,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><a target="_blank" rel="noopener" href="https://davidzyy.github.io/2022/08/27/my-experience-of-learning-os/">本文地址</a></p>
+        <p><a
+target="_blank" rel="noopener" href="https://davidzyy.github.io/2022/08/27/my-experience-of-learning-os/">本文地址</a></p>
 <p>2022年全国大学生计算机系统能力大赛，操作系统设计赛结束了，我们队的作品tatakos，非常幸运的获得了内核赛道的一等奖。</p>
 <p>得知这个消息的一刻，并没有想象中的激动，感觉也是在情理之中，水到渠成。</p>
 <p>这大半年学习os和参加比赛的经历还是很宝贵的，值得记录一下。</p>
@@ -236,13 +232,18 @@
 <p>6.s081其实做的不是很好，因为好几个实验都没能做出来。我还打印了它课程上讲的几篇论文，打算好好的研读，都因为时间问题搁置了。但是它建立了我对os的基本印象，没有它我后面不可能走的这么远。</p>
 <h1 id="虚拟文件系统入坑linux">虚拟文件系统——入坑linux</h1>
 <p>我加入之后，当务之急是完成文件系统。比赛所使用的文件系统是fat32。我们当时还不知道是自己实现还是移植现成的。刚好初赛的测试用例中有一个mount挂载的，需要用到vfs虚拟文件系统。就想着从虚拟文件系统开始搞起吧。当时我对于这些概念还是比较混乱的，做的过程也是知识拓荒的过程。(事后回顾过来，其实这个时候的决策有些问题，应该先去做具体的文件系统fat32，先把测试样例通过了，虚拟文件系统可以后期再做，只是锦上添花)。于是开始搞吧，研究vfs的四大部件（file、dentry、inode、super_block），网上也找了不少博客，还有去年获奖的队伍xv6-k210可供参考，但是研究了几天，总感觉是浮于表面，想写代码，却不得其门而入。</p>
-<p>这段时间yzz向我推荐了一本书<em>professional linux kernel architecture</em>，看其中的vfs章节，我自己也找了<em>understanding the linux kernel</em>，两书并行参考，后来我感觉后书看上去更舒服一些，就主要参考后书了。这两本书都是基于linux2.6内核写的，虽然已经是二十年的版本，但是一些基本原理是不会变的。于是开始对着书本，一边阅读源码，一边把搬运源码。</p>
-<p>现在想来，那真是一段不堪回首的往事。由于内核的代码太过庞大，很多功能我们实际上是用不到的，但是我又很贪心，也想加入到我们的内核中，比如符号链接（symbolic link）；还有很多技巧性很强但是非常优雅的编码方式，比如通过把函数名作为参数，对下层的具体文件系统和RAMFS实现统一的抽象。而且内核代码各个模块的关联性还是很强的，比如vfs模块还和设备管理，文件缓存等有所关联，我在对整体没有建立起一个全面的概念的情况下，就像是盲人摸象。就这样从4月下旬从5月上旬，包括五一，我一直在理解代码，复制代码，改写代码中循环；心态差点崩溃。</p>
+<p>这段时间yzz向我推荐了一本书<em>professional linux kernel
+architecture</em>，看其中的vfs章节，我自己也找了<em>understanding the
+linux
+kernel</em>，两书并行参考，后来我感觉后书看上去更舒服一些，就主要参考后书了。这两本书都是基于linux2.6内核写的，虽然已经是二十年的版本，但是一些基本原理是不会变的。于是开始对着书本，一边阅读源码，一边把搬运源码。</p>
+<p>现在想来，那真是一段不堪回首的往事。由于内核的代码太过庞大，很多功能我们实际上是用不到的，但是我又很贪心，也想加入到我们的内核中，比如符号链接（symbolic
+link）；还有很多技巧性很强但是非常优雅的编码方式，比如通过把函数名作为参数，对下层的具体文件系统和RAMFS实现统一的抽象。而且内核代码各个模块的关联性还是很强的，比如vfs模块还和设备管理，文件缓存等有所关联，我在对整体没有建立起一个全面的概念的情况下，就像是盲人摸象。就这样从4月下旬从5月上旬，包括五一，我一直在理解代码，复制代码，改写代码中循环；心态差点崩溃。</p>
 <p>这期间yzz做了包括buddy和slob内存分配模块，调试板卡，移植sd卡驱动等诸多工作，其中硬件的水很深，据他说也遇到了不少困难；我也帮不上什么忙，硬件是我的短板，我也想抽空学一下，但是脱不开身。</p>
 <p>就这样到了五一之后，我开始有了一些头绪，之前复制的代码慢慢有了线索，简化了不少冗余的东西。虽说还是很困难，但是不至于一头雾水，做出来没问题，只是不知道还要多久，代码写好后调bug的时间更是不可控。</p>
 <p>这时我们开了一个短会，因为差不多还有一个月初赛就要结束了，而我们的fat32还是不能支持。比起这个刚需项，vfs的优先级被降低了，经过讨论，甚至可以不用vfs。（其实最好还是做一下，后面因为没有vfs，我们很多对于ramfs的处理都不够优雅。）我们于是决定先去支持fat32.</p>
 <p>我花了不少时间从linux上抄的代码只能暂时放放了。接下来我们两头并行，他去写fat32，我则移植现成的Fatfs作为备选项。</p>
-<p>那段时间还是非常繁忙的，经历了社团换届，创新实践结课等诸多事宜。对于这次移植，我还闹了个笑话，由于没有搞清楚各个接口的作用就匆忙上手，我还以为Fatfs没有提供从某个偏移处开始读文件的接口，还自己去实现了一遍。现在回头看，真是愚蠢的可笑。我还就移植结果写了一篇<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45925418/article/details/124757926?spm=1001.2014.3001.5502">文章</a>。</p>
+<p>那段时间还是非常繁忙的，经历了社团换届，创新实践结课等诸多事宜。对于这次移植，我还闹了个笑话，由于没有搞清楚各个接口的作用就匆忙上手，我还以为Fatfs没有提供从某个偏移处开始读文件的接口，还自己去实现了一遍。现在回头看，真是愚蠢的可笑。我还就移植结果写了一篇<a
+target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45925418/article/details/124757926?spm=1001.2014.3001.5502">文章</a>。</p>
 <p>差不多一周后，他告诉我已经可以稳定支持了。那么我就没必要继续进行这个备选方案了。</p>
 <p>这段“抄”linux的经历虽然痛苦，还是值得的。从这里我第一次读懂了linux内核代码的一点皮毛；见识了内核开发者们是怎么编码的；也是通过vfs的学习对大型软件系统有了模块化的概念。</p>
 <h1 id="page-cache页缓存架构的核心">page cache页缓存——架构的核心</h1>
@@ -250,36 +251,53 @@
 <p>到目前为止，我还没有对我们的os做出实质性的贡献。刚好还有两个系统调用mmap和munmap，我由于之前在xv6的实验中做过，就由我来做了。其实这两个系统调用后面可以纳入一个更加通用的体系中，这个体系囊括了我们整个进程地址空间，只是当时我并不知道。还因为对齐的问题以及一些其他的影响做了好久。</p>
 <p>五月下旬，yzz优化了sd卡的读写，在测试读写速度发现非常慢，读写512kb的数据需要20多秒。</p>
 <p>经过研究发现是因为原来xv6的读写只采用了块缓存，即每次读写一个扇区（512b），特别实在qemu上面，后面会越来越慢。他还做了一个分析器，来分析函数的调用次数和时间，从而找到性能瓶颈。如果能采用多块读写也许会更快。</p>
-<p>当时我在<em>understanding the linux kernel</em>上看到了页缓存（page cache），想要引入os中取代块缓存，似乎可以解决这个问题。就这样我开始做页缓存，并且优化磁盘的读写。其实我们原来的系统过初赛已经没问题了，做这些只是为了继续优化性能。</p>
-<p>linux的页缓存的数据结构是基数树(radix tree)，我对着linux的源码边写边改。这里我还埋了一颗雷，这颗雷后面导致了bug。根本原因是基数树的高度为0时的处理，这里我做的稍显武断，就把雷给埋下了。</p>
+<p>当时我在<em>understanding the linux kernel</em>上看到了页缓存（page
+cache），想要引入os中取代块缓存，似乎可以解决这个问题。就这样我开始做页缓存，并且优化磁盘的读写。其实我们原来的系统过初赛已经没问题了，做这些只是为了继续优化性能。</p>
+<p>linux的页缓存的数据结构是基数树(radix
+tree)，我对着linux的源码边写边改。这里我还埋了一颗雷，这颗雷后面导致了bug。根本原因是基数树的高度为0时的处理，这里我做的稍显武断，就把雷给埋下了。</p>
 <p>这个时间段我们讨论了很多关于读写的问题，什么轮询，中断，同步异步IO，是否有必要专门用一个内核线程进行读写。虽然这些东西后面都没有用到。</p>
 <p>就这样到六月。那几天比较无聊，找了几部小说，写代码之余看看。记得还是端午假期，我一个人在实验室，外面下着大雨，实在没有心情干活了，就端着手机看《倚天屠龙记》，沉浸金庸笔下的武侠世界中。</p>
 <p>端午之后，由于初赛过了，第一阶段的决赛试题还没有发布，算是比较轻松。我意识到自己还要考研，差不多应该准备复习了。于是捧起书，每天抽出一半的时间来复习，一半的时间写代码。进度就降下来了。</p>
-<p>就这样，六月过半，page cache以及磁盘读写优化算是完成了，但是还有bug，我怎么也调不出来。因为bug的代码发生在buddy和slob中，还以为是yzz的内存分配模块出了问题。最中在yzz的帮助下找到了两个特别弱智的bug，一个是把变量名当作结构体名，放到sizeof中去分配内存，一个是循环时把i，j搞混了。这对我而言也是一个深刻的教训。写好代码后一定要复查。</p>
+<p>就这样，六月过半，page
+cache以及磁盘读写优化算是完成了，但是还有bug，我怎么也调不出来。因为bug的代码发生在buddy和slob中，还以为是yzz的内存分配模块出了问题。最中在yzz的帮助下找到了两个特别弱智的bug，一个是把变量名当作结构体名，放到sizeof中去分配内存，一个是循环时把i，j搞混了。这对我而言也是一个深刻的教训。写好代码后一定要复查。</p>
 <p>在做的过程中，我还发现了内存和磁盘分配给同一个文件时尽量连续和有顺序性，可以增大传输的效率。</p>
 <p>修复bug后，又测试了一下，扇区正向分配的读写速度已经可以达到1m/1s。虽然页缓存模块还比较简陋，就像一辆破车，但好歹可以跑了。</p>
-<p>当时我们还不知道，page cache后面会成为系统架构的核心。但是这次成功的经历，给了我很大的信心。</p>
+<p>当时我们还不知道，page
+cache后面会成为系统架构的核心。但是这次成功的经历，给了我很大的信心。</p>
 <figure>
-<img src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220827203515524.png" alt="image-20220827203515524" /><figcaption>image-20220827203515524</figcaption>
+<img
+src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220827203515524.png"
+alt="image-20220827203515524" />
+<figcaption aria-hidden="true">image-20220827203515524</figcaption>
 </figure>
 <h1 id="vma深入虚拟内存">vma——深入虚拟内存</h1>
 <p>6月下旬，yzz回家了，我还在学校里，打算继续在系统中加入页回收的功能。</p>
-<p>翻着<em>understanding the linux kernel</em>，发现页回收需要用到反向映射（reverse mapping），而这本书的内核版本是2.6.11，这个版本的内核使用的是object-based reverse mapping（面向对象的反向映射），需要使用到虚拟内存区域（vma）。</p>
-<p>当时找了一些反向映射的文章，<a target="_blank" rel="noopener" href="http://www.embeddedlinux.org.cn/emb-linux/system-development/201810/14-8352.html">这篇文章</a>给我留下了深刻的映像。</p>
+<p>翻着<em>understanding the linux
+kernel</em>，发现页回收需要用到反向映射（reverse
+mapping），而这本书的内核版本是2.6.11，这个版本的内核使用的是object-based
+reverse
+mapping（面向对象的反向映射），需要使用到虚拟内存区域（vma）。</p>
+<p>当时找了一些反向映射的文章，<a
+target="_blank" rel="noopener" href="http://www.embeddedlinux.org.cn/emb-linux/system-development/201810/14-8352.html">这篇文章</a>给我留下了深刻的映像。</p>
 <p>在详细的了解了vma之后，发现其有更加广泛的用途，比如在处理页错误和内存保护。</p>
 <p>于是打算先实现一下vma。还是对着linux的源码，边看边改。到了7月上旬，支持红黑树查询，合并和分裂的vma模块完成了。这中间，因为mprotect对于vma区域权限的更改非常复杂，我还犹豫了很久要不要支持，最终选择了放弃。有了vma，我还重写了mmap部分和处理页错误的部分。大致完成后，和他视频交流了一次。后来我在学校呆着也没意思，就也回了家。</p>
 <p>七月中旬回家后，我几乎都在合并完善和debug，但是我的工作没有用得上。因为yzz在做决赛第一阶段的过程中也做了一个vma模块。</p>
-<p>事实证明，不在学校，交流不便，对我们还是产生了不少的影响的。整个七月份我们的交流很少。初赛第一阶段几乎都是他一个人在做，由于交流不便，我跟不上他的进度，也没有帮什么忙。这个地方也是遗憾，时候反思下来确实不好。等我把vma debug完成，和前面的页缓存整合起来已经是7月下旬了。</p>
+<p>事实证明，不在学校，交流不便，对我们还是产生了不少的影响的。整个七月份我们的交流很少。初赛第一阶段几乎都是他一个人在做，由于交流不便，我跟不上他的进度，也没有帮什么忙。这个地方也是遗憾，时候反思下来确实不好。等我把vma
+debug完成，和前面的页缓存整合起来已经是7月下旬了。</p>
 <p>虚拟内存区域（vma）模块，对我个人而言是比较满意的，我感觉自己做的还不错；但对我们整个项目而言就不是那么成功，因为代码没被引入到内核中。虽然后面我也想过对内核中的vma模块再进行优化，但是因为时间问题而放弃了。</p>
 <p>虽然如此，如果没有做vma的铺垫，我后面不可能继续做页回收，所以从这个角度讲也是有意义的。</p>
 <figure>
-<img src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220827203232833.png" alt="image-20220827203232833" /><figcaption>image-20220827203232833</figcaption>
+<img
+src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220827203232833.png"
+alt="image-20220827203232833" />
+<figcaption aria-hidden="true">image-20220827203232833</figcaption>
 </figure>
 <h1 id="页回收内存大统一">页回收——内存大统一</h1>
 <p>7月下旬，决赛第一阶段结束还有十几天吧。我终于可以腾出手来做页回收了。</p>
 <p>从一方面讲，其实这个时候我可能更应该去帮yzz做测试用例，听他说动态链接和多线程做的等一些部分做的还是挺吃力的，好在他最后都做出了。</p>
 <p>另一方面，由于前面我们的交流过少，我不清楚他的进度，在这上面的积累不够，也帮不上什么忙。相反继续做后面可能用到的页回收帮助更大些。</p>
-<p>第一次先是花了一个星期阅读<em>understanding the linux kernel</em>，看源码，但是由于不同的页的回收方式不同，特殊的页的回收需要引入反向映射和交换（swap）技术。我当时概念还不清晰，一个星期之后，代码差不多写好了，该debug运行了。感觉实在不想看了，就放到一遍，复习了两天数学。</p>
+<p>第一次先是花了一个星期阅读<em>understanding the linux
+kernel</em>，看源码，但是由于不同的页的回收方式不同，特殊的页的回收需要引入反向映射和交换（swap）技术。我当时概念还不清晰，一个星期之后，代码差不多写好了，该debug运行了。感觉实在不想看了，就放到一遍，复习了两天数学。</p>
 <p>两天之后感觉时间比较紧迫，就又整理了一下代码，剔除掉枝叶，理出了一条主干，顺着这条主干走就舒服多了。</p>
 <p>到了八月，第一阶段的比赛结束，我们依旧取得了满分的成绩。然而我在这一阶段并没有直接的贡献。</p>
 <p>几天后，可以回收页缓存的页回收功能也基本完成了。</p>
@@ -290,10 +308,16 @@
 <p>于是反向映射和swap被引入到内核中。这两个部分的加入，使得几乎所有物理页的分配和回收被统一起来。</p>
 <p>然而遗憾的是，由于最后阶段时间不足，还有bug未修掉，还是未能成功跑完它。</p>
 <figure>
-<img src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220827202816372.png" alt="image-20220827202816372" /><figcaption>image-20220827202816372</figcaption>
+<img
+src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220827202816372.png"
+alt="image-20220827202816372" />
+<figcaption aria-hidden="true">image-20220827202816372</figcaption>
 </figure>
 <figure>
-<img src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220827203005578.png" alt="image-20220827203005578" /><figcaption>image-20220827203005578</figcaption>
+<img
+src="https://raw.githubusercontent.com/DavidZyy/PicBed/master/img/image-20220827203005578.png"
+alt="image-20220827203005578" />
+<figcaption aria-hidden="true">image-20220827203005578</figcaption>
 </figure>
 <h1 id="后记">后记</h1>
 <p>比赛截止前的最后一天我们基本上在制作和修改ppt。第二天答辩的时间也幸运的被安排在下午。数月的辛劳，最终化为了15分钟的ppt演讲和5分钟的问答。</p>
@@ -303,8 +327,10 @@
 <p>谨以此文作为总结。</p>
 <h1 id="附录">附录</h1>
 <p>项目地址：</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/yztz">yztz</a>/<strong><a target="_blank" rel="noopener" href="https://github.com/yztz/tatakOS">tatakOS</a></strong></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/DavidZyy">DavidZyy</a>/<strong><a target="_blank" rel="noopener" href="https://github.com/DavidZyy/tatakOS">tatakOS</a></strong></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/yztz">yztz</a>/<strong><a
+target="_blank" rel="noopener" href="https://github.com/yztz/tatakOS">tatakOS</a></strong></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/DavidZyy">DavidZyy</a>/<strong><a
+target="_blank" rel="noopener" href="https://github.com/DavidZyy/tatakOS">tatakOS</a></strong></p>
 
     </div>
 
@@ -378,7 +404,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
