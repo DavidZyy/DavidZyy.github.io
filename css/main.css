@@ -2638,7 +2638,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #96fed5;
+  background: #c741ff;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2663,18 +2663,4 @@ hr {
 }
 .sub-menu .menu-item {
   display: inline-block;
-}
-
-
-
-.left {
-  float: left;
-  width: 200px;
-  background-color: gray;
-  height: 400px;
-}
-.right {
-  margin-left: 210px;
-  background-color: lightgray;
-  height: 200px;
 }
