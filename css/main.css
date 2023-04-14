@@ -2664,3 +2664,17 @@ hr {
 .sub-menu .menu-item {
   display: inline-block;
 }
+
+
+
+.left {
+  float: left;
+  width: 200px;
+  background-color: gray;
+  height: 400px;
+}
+.right {
+  margin-left: 210px;
+  background-color: lightgray;
+  height: 200px;
+}
